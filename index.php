@@ -1,6 +1,7 @@
 <?php
-if($_COOKIE['Admin'])
-	header("Location: ./home.php"); 
+if(!empty ($_COOKIE ['Admin'])){
+	header("Location: ./home.php");
+};
 ?>
 <!DOCTYPE html>
 <html lang="zh-tw">
@@ -92,12 +93,9 @@ if($_COOKIE['Admin'])
 <!--===============================================================================================-->
 	<script src="vendor/tilt/tilt.jquery.min.js"></script>
 	<script >
+		
 		$("button").click(function(){
 
-		
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
 		
 		if($("#pass").val()!= "" && $("#user").val() != ""){
 			$.ajax({
@@ -109,7 +107,9 @@ if($_COOKIE['Admin'])
 					  },
 		    	success: function(res){
 					if(res.success == true){
+						setTimeout(1000)
 						window.location = "./home.php"
+						
 					}
 					if(res.success == false){
 						alert("登入失敗")

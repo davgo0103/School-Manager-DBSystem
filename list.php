@@ -31,6 +31,75 @@ if(!$_COOKIE['Admin'])
 
     <!-- Style -->
     <link rel="stylesheet" href="./03/css/style.css">
+	
+	<style>
+		html,
+		body {
+			height: 100%;
+		}
+
+		body {
+			margin: 0;
+			background: linear-gradient(45deg, #49a09d, #5f2c82);
+			font-family: sans-serif;
+			font-weight: 100;
+		}
+
+		.container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		table {
+			width: 800px;
+			border-collapse: collapse;
+			overflow: hidden;
+			box-shadow: 0 0 20px rgba(0,0,0,0.1);
+		}
+
+		th,
+		td {
+			padding: 15px;
+			background-color: rgba(255,255,255,0.2);
+			color: #fff;
+		}
+
+		th {
+			text-align: left;
+		}
+
+		thead {
+			th {
+				background-color: #55608f;
+			}
+		}
+
+		tbody {
+			tr {
+				&:hover {
+					background-color: rgba(255,255,255,0.3);
+				}
+			}
+			td {
+				position: relative;
+				&:hover {
+					&:before {
+						content: "";
+						position: absolute;
+						left: 0;
+						right: 0;
+						top: -9999px;
+						bottom: -9999px;
+						background-color: rgba(255,255,255,0.2);
+						z-index: -1;
+					}
+				}
+			}
+		}	
+	</style>
+	
 </head>
 <body>
 	<header class="site-navbar" role="banner">
@@ -42,8 +111,8 @@ if(!$_COOKIE['Admin'])
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active"><a href="index.php"><span style="color: #000000">Home</span></a></li>
-                <li><a href="list.php" style="color: #000000"><span>顯示資料</span></a></li>
+                <li><a href="home.php"><span style="color: #000000">Home</span></a></li>
+                <li class="active"><a href="list.php" style="color: #000000"><span>顯示資料</span></a></li>
                 <li><a href="delete.php" style="color: #000000"><span>刪除資料</span></a></li>
                 <li><a href="update.php" style="color: #000000"><span>修改資料</span></a></li>
                 <li><a href="php/logout.php" style="color: #000000"><span>登出</span></a></li>
@@ -63,68 +132,60 @@ if(!$_COOKIE['Admin'])
 	<div class="limiter">
 		<div class="container-login100">
 		  <div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src="images/STUST.png" alt="IMG">
-				</div>
 
-				<form class="login100-form validate-form">
-					<span class="login100-form-title">
-						新增學生資料
-					</span>
-					
+			  
 
-					<div class="wrap-input100 validate-input" data-validate = "請輸入證號">
-						<input class="input100" type="text" name="sn" id = "sn" placeholder="證件號碼">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-id-card" aria-hidden="true"></i>
-						</span>
-					</div>
+	<table>
+		<thead>
+			<tr>
+				<th>Column 1</th>
+				<th>Column 2</th>
+				<th>Column 3</th>
+				<th>Column 4</th>
+				<th>Column 5</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Cell 1</td>
+				<td>Cell 2</td>
+				<td>Cell 3</td>
+				<td>Cell 4</td>
+				<td>Cell 5</td>
+			</tr>
+			<tr>
+				<td>Cell 1</td>
+				<td>Cell 2</td>
+				<td>Cell 3</td>
+				<td>Cell 4</td>
+				<td>Cell 5</td>
+			</tr>
+			<tr>
+				<td>Cell 1</td>
+				<td>Cell 2</td>
+				<td>Cell 3</td>
+				<td>Cell 4</td>
+				<td>Cell 5</td>
+			</tr>
+			<tr>
+				<td>Cell 1</td>
+				<td>Cell 2</td>
+				<td>Cell 3</td>
+				<td>Cell 4</td>
+				<td>Cell 5</td>
+			</tr>
+			<tr>
+				<td>Cell 1</td>
+				<td>Cell 2</td>
+				<td>Cell 3</td>
+				<td>Cell 4</td>
+				<td>Cell 5</td>
+			</tr>
+		</tbody>
+	</table>
 
-					<div class="wrap-input100 validate-input" data-validate = "請輸入姓名">
-						<input class="input100" type="text" name="name" id = "name" placeholder="姓名">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-						</span>
-					</div>
-					
-				  <div class="wrap-input100 validate-input" data-validate = "請輸入數學分數">
-						<input class="input100" type="number" name="sc1" id = "sc1" placeholder="數學">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-star" aria-hidden="true"></i>
-						</span>
-				  </div>
-				  <div class="wrap-input100 validate-input" data-validate = "請輸入國文分數">
-						<input class="input100" type="number" name="sc2" id = "sc2" placeholder="國文">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-star" aria-hidden="true"></i>
-						</span>
-				  </div>
-				  <div class="wrap-input100 validate-input" data-validate = "請輸入自然分數">
-						<input class="input100" type="number" name="sc3" id = "sc3" placeholder="自然">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-star" aria-hidden="true"></i>
-						</span>
-				  </div>
-					
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" id = "btn">
-							新增資料
-					  </button>
-					</div>
 
-					<div class="text-center p-t-12">
-						<span class="txt1">
-							點擊將資料添加至資料庫中
-				  </span></div>
-
-					<div class="text-center p-t-136"></div>
-				</form>
-			</div>
+		  </div>
 		</div>
 	</div>
 	
