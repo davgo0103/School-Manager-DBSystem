@@ -1,3 +1,7 @@
+<?php
+if($_COOKIE['Admin'])
+	header("Location: ./home.php"); 
+?>
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
@@ -95,7 +99,7 @@
 			scale: 1.1
 		})
 		
-		if($("#pass").val()!="" && $("#user").val()!=""){
+		if($("#pass").val()!= "" && $("#user").val() != ""){
 			$.ajax({
 		    	url: 'php/login.php',
 		    	method: 'POST',
