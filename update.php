@@ -101,7 +101,10 @@ if(!$_COOKIE['Admin'])
 					}
 				}
 			}
-		}	
+		}
+		.num {
+			width: 4.5em;
+		}
 	</style>
 	
 </head>
@@ -117,8 +120,8 @@ if(!$_COOKIE['Admin'])
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="home.php"><span style="color: #000000">Home</span></a></li>
                 <li><a href="list.php" style="color: #000000"><span>顯示資料</span></a></li>
-                <li class="active"><a href="delete.php" style="color: #000000"><span>刪除資料</span></a></li>
-                <li><a href="update.php" style="color: #000000"><span>修改資料</span></a></li>
+                <li><a href="delete.php" style="color: #000000"><span>刪除資料</span></a></li>
+                <li class="active"><a href="update.php" style="color: #000000"><span>修改資料</span></a></li>
                 <li><a href="php/logout.php" style="color: #000000"><span>登出</span></a></li>
               </ul>
             </nav>
@@ -167,11 +170,33 @@ if(!$_COOKIE['Admin'])
       while ($row = mysql_fetch_row($result))
       {
         echo "<tr>";      
-        for($i = 0; $i < $total_fields; $i++)
-          echo "<td>$row[$i]</td>"; 
-                    
+        for($i = 0; $i < $total_fields; $i++){
+			switch ($i){
+				case 0:
+					echo "
+					<td><input size = '7.5' type='text' id = 'id_$row[0]' placeholder='$row[$i]' value = '$row[$i]'></td>"; 
+					break;
+				case 1:
+					echo "
+					<td><input size = '7.5' type='text' id = 'name_$row[0]' placeholder='$row[$i]' value = '$row[$i]'></td>"; 
+					break;
+				case 2:
+					echo "
+					<td><input class = 'num' type='number' id = 'sc1_$row[0]' placeholder='$row[$i]' value = '$row[$i]'></td>"; 
+					break;
+				case 3:
+					echo "
+					<td><input class = 'num' type='number' id = 'sc2_$row[0]' placeholder='$row[$i]' value = '$row[$i]'></td>"; 
+					break;
+				case 4:
+					echo "
+					<td><input class = 'num' type='number' id = 'sc3_$row[0]' placeholder='$row[$i]' value = '$row[$i]'></td>"; 
+					break;
+			}
+		}
+		                    
 		echo "<td> <button class='login100-form-btn' id = '$row[0]'>
-							刪除
+							修改
 							</button></td>";
         echo "</tr>";     
       }
@@ -187,7 +212,7 @@ if(!$_COOKIE['Admin'])
 	</table>
 
 			<div class="text-center p-t-12">
-				<span class="txt1">刪除資料
+				<span class="txt1">所有資料皆可修改 - 包含學號
 			</span>
 			</div>
 			<div class="text-center p-t-136"></div>
@@ -213,20 +238,28 @@ if(!$_COOKIE['Admin'])
 			scale: 1.1
 		})
 		
+		$(e.target).attr('sc1')
+		$(e.target).attr('sc2')
+		$(e.target).attr('sc3')
 		if($(e.target).attr('id') != ""){
 			$.ajax({
-		    	url: 'php/delete.php',
+		    	url: 'php/update.php',
 		    	method: 'POST',
 		    	dataType: 'json',
-		    	data: {ID: $(e.target).attr('id'),
+		    	data: {SN: $(e.target).attr('id'),
+					   SN2: $("#id_"+$(e.target).attr('id')).val(),
+					   Name: $("#name_"+$(e.target).attr('id')).val(),
+					   SC1: $("#sc1_"+$(e.target).attr('id')).val(),
+					   SC2: $("#sc2_"+$(e.target).attr('id')).val(),
+					   SC3: $("#sc3_"+$(e.target).attr('id')).val(),
 					  },
 		    	success: function(res){
 					if(res.success == true){
-						alert("刪除成功")
+						alert("修改成功")
 						location.reload()
 					}
 					if(res.success == false){
-						alert("刪除失敗，發生未知的錯誤請刷新")
+						alert("修改失敗，發生未知的錯誤請刷新")
 						location.reload()
 					}
 					if(res.success == null){
