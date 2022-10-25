@@ -57,7 +57,7 @@ if(!$_COOKIE['Admin'])
           </div>
 
         </div>
-      </div>
+      	
       
     </header>
 	<div class="limiter">
