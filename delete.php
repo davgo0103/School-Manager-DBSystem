@@ -116,8 +116,8 @@ if(!$_COOKIE['Admin'])
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="home.php"><span style="color: #000000">Home</span></a></li>
-                <li class="active"><a href="list.php" style="color: #000000"><span>顯示資料</span></a></li>
-                <li><a href="delete.php" style="color: #000000"><span>刪除資料</span></a></li>
+                <li><a href="list.php" style="color: #000000"><span>顯示資料</span></a></li>
+                <li class="active"><a href="delete.php" style="color: #000000"><span>刪除資料</span></a></li>
                 <li><a href="update.php" style="color: #000000"><span>修改資料</span></a></li>
                 <li><a href="php/logout.php" style="color: #000000"><span>登出</span></a></li>
               </ul>
@@ -147,6 +147,7 @@ if(!$_COOKIE['Admin'])
 				<th>國文</th>
 				<th>數學</th>
 				<th>自然</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -167,9 +168,11 @@ if(!$_COOKIE['Admin'])
       {
         echo "<tr>";      
         for($i = 0; $i < $total_fields; $i++)
-          
           echo "<td>$row[$i]</td>"; 
                     
+		echo "<td> <button class='login100-form-btn' id = '$row[0]'>
+							刪除
+							</button></td>";
         echo "</tr>";     
       }
 	
@@ -205,33 +208,30 @@ if(!$_COOKIE['Admin'])
 <!--===============================================================================================-->
 	<script src="vendor/tilt/tilt.jquery.min.js"></script>
 	<script >
-		$("button").click(function(){
-
-		
+		$("button").click(function(e){		
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
 		
-		if($("#sn").val()!="" && $("#name").val()!="" && $("#sc1").val()!="" && $("#sc2").val()!="" && $("#sc3").val()!=""){
+		if($(e.target).attr('id') != ""){
 			$.ajax({
-		    	url: 'php/insert.php',
+		    	url: 'php/delete.php',
 		    	method: 'POST',
 		    	dataType: 'json',
-		    	data: {SN: $("#sn").val(),
-					   Name: $("#name").val(),
-					   SC1: $("#sc1").val(),
-					   SC2: $("#sc2").val(),
-					   SC3: $("#sc3").val(),
+		    	data: {ID: $(e.target).attr('id'),
 					  },
 		    	success: function(res){
 					if(res.success == true){
-						alert("資料新增成功")
+						alert("刪除成功")
+						location.reload()
 					}
 					if(res.success == false){
-						alert("資料新增失敗，可能證號已存在")
+						alert("刪除失敗，發生未知的錯誤請刷新")
+						location.reload()
 					}
 					if(res.success == null){
-						alert("資料沒有任何變動")
+						alert("此資料已不存在")
+						location.reload()
 					}
 				},
 				error: function(res){

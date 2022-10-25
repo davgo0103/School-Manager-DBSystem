@@ -204,46 +204,7 @@ if(!$_COOKIE['Admin'])
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/tilt/tilt.jquery.min.js"></script>
-	<script >
-		$("button").click(function(){
-
-		
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-		
-		if($("#sn").val()!="" && $("#name").val()!="" && $("#sc1").val()!="" && $("#sc2").val()!="" && $("#sc3").val()!=""){
-			$.ajax({
-		    	url: 'php/insert.php',
-		    	method: 'POST',
-		    	dataType: 'json',
-		    	data: {SN: $("#sn").val(),
-					   Name: $("#name").val(),
-					   SC1: $("#sc1").val(),
-					   SC2: $("#sc2").val(),
-					   SC3: $("#sc3").val(),
-					  },
-		    	success: function(res){
-					if(res.success == true){
-						alert("資料新增成功")
-					}
-					if(res.success == false){
-						alert("資料新增失敗，可能證號已存在")
-					}
-					if(res.success == null){
-						alert("資料沒有任何變動")
-					}
-				},
-				error: function(res){
-					alert("程式出錯啦!")
-				},
-			});
-		}
-		
-		
-		});
-		
-	</script>
+	
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
