@@ -109,6 +109,7 @@ if(!empty ($_COOKIE ['Admin'])){
 					if(res.success == true){
 						setTimeout(1000)
 						window.location = "./home.php"
+						location.reload()
 						
 					}
 					if(res.success == false){
